@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bilbgd8o07f2"]
+
+[ext_resource type="PackedScene" uid="uid://c6ynvlkjcgctg" path="res://addons/basic_marble_run/scenes/map.tscn" id="1_map"]
+[ext_resource type="PackedScene" uid="uid://crajckpl86df0" path="res://addons/basic_marble_run/scenes/marble.tscn" id="2_marble"]
+
+[node name="Main" type="Node3D" unique_id=1288017692]
+
+[node name="Map" parent="." unique_id=1997337859 instance=ExtResource("1_map")]
+
+[node name="Marble" parent="." unique_id=1924570365 instance=ExtResource("2_marble")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2797325, 0)

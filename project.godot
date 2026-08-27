@@ -11,13 +11,19 @@ config_version=5
 [application]
 
 config/name="Marble Run Controller"
-run/main_scene="uid://bilbgd8o07f2"
+config/version="1.0.0"
+run/main_scene="res://addons/basic_marble_run/scenes/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="uid://dxn2ceruttuvi"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/basic_marble_run/plugin.cfg")
 
 [input]
 
@@ -51,4 +57,4 @@ move_backward={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/msaa_3d=3

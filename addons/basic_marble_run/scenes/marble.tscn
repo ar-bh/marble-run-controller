@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://crajckpl86df0"]
 
-[ext_resource type="Script" uid="uid://wdqm316r7w43" path="res://scripts/marble.gd" id="1_il0lc"]
-[ext_resource type="Texture2D" uid="uid://d1gdg0vtj1rif" path="res://assets/GodotPrototypeBlack512.png" id="2_bj782"]
+[ext_resource type="Script" uid="uid://wdqm316r7w43" path="res://addons/basic_marble_run/scripts/marble.gd" id="1_il0lc"]
+[ext_resource type="Texture2D" uid="uid://cmdwbx80fe5u8" path="res://addons/basic_marble_run/assets/4e31caa0f5acc386e4a504eab2269ebdb47f0307.jpg" id="2_bj782"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mn11d"]
 
@@ -12,6 +12,7 @@ albedo_texture = ExtResource("2_bj782")
 material = SubResource("StandardMaterial3D_jmcsv")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iemch"]
+radius = 0.2
 
 [node name="Marble" type="RigidBody3D" unique_id=559165511]
 can_sleep = false
@@ -31,7 +32,8 @@ mesh = SubResource("SphereMesh_mn11d")
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=609840476]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 shape = SubResource("SphereShape3D_iemch")
-spring_length = 6.0
+spring_length = 8.0
+margin = 0.4
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=443601401]
 unique_name_in_owner = true

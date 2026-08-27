@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://c6ynvlkjcgctg"]
+
+[ext_resource type="Texture2D" uid="uid://ckv3cpiwnxp3g" path="res://addons/basic_marble_run/assets/GodotPrototypeBlack512.png" id="1_black"]
+[ext_resource type="Texture2D" uid="uid://2ynb64alu5ad" path="res://addons/basic_marble_run/assets/GodotPrototypeOrange512.png" id="2_orange"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
+sky_top_color = Color(0.76, 0.8, 0.86, 1)
+sky_horizon_color = Color(0.94, 0.94, 0.95, 1)
+sky_curve = 0.14
+ground_bottom_color = Color(0.62, 0.62, 0.64, 1)
+ground_horizon_color = Color(0.94, 0.94, 0.95, 1)
+ground_curve = 0.08
+
+[sub_resource type="Sky" id="Sky_env"]
+sky_material = SubResource("ProceduralSkyMaterial_env")
+
+[sub_resource type="Environment" id="Environment_map"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 3.43
+sky = SubResource("Sky_env")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.48
+reflected_light_source = 1
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 1.2
+ssao_intensity = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_black"]
+albedo_texture = ExtResource("1_black")
+uv1_scale = Vector3(0.7, 0.7, 0.7)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="mat_orange"]
+albedo_texture = ExtResource("2_orange")
+uv1_scale = Vector3(0.7, 0.7, 0.7)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Map" type="Node3D" unique_id=1105123628]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1476170645]
+environment = SubResource("Environment_map")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=665737060]
+transform = Transform3D(1, 0, 0, 0, -0.7931409, 0.60903835, 0, -0.60903835, -0.7931409, 0, 0, 0)
+light_energy = 0.85
+light_specular = 0.25
+shadow_enabled = true
+shadow_blur = 1.2
+directional_shadow_max_distance = 200.0
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=768263135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+use_collision = true
+size = Vector3(90, 0.4, 90)
+material = SubResource("mat_black")
+
+[node name="StartPad" type="CSGBox3D" parent="." unique_id=854178882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+use_collision = true
+size = Vector3(8, 0.4, 8)
+material = SubResource("mat_orange")
+
+[node name="RampNorth" type="CSGPolygon3D" parent="." unique_id=44275671]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 3, 0, 8)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 12, 3, 12, 0)
+depth = 6.0
+material = SubResource("mat_orange")
+
+[node name="RampEast" type="CSGPolygon3D" parent="." unique_id=1988531934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 12, 3, 12, 0)
+depth = 6.0
+material = SubResource("mat_orange")
+
+[node name="RampWest" type="CSGPolygon3D" parent="." unique_id=1866159465]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -3)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 12, 3, 12, 0)
+depth = 6.0
+material = SubResource("mat_orange")
+
+[node name="RampSteep" type="CSGPolygon3D" parent="." unique_id=1072256615]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 16, 0, 8)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 10, 4.5, 10, 0)
+depth = 5.0
+material = SubResource("mat_orange")
+
+[node name="RampWide" type="CSGPolygon3D" parent="." unique_id=123738502]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 10)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 10, 1.8, 10, 0)
+depth = 8.0
+material = SubResource("mat_orange")
+
+[node name="QuarterPipe" type="CSGPolygon3D" parent="." unique_id=1066133312]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 4, 0, 24)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 2, 0, 3, 0.25, 4.5, 1.1, 6, 2.6, 7.2, 4.6, 8, 7, 8, 0)
+depth = 8.0
+material = SubResource("mat_orange")
+
+[node name="Launch" type="CSGPolygon3D" parent="." unique_id=1992007007]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -3, 0, -8)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 12, 2.8, 12, 0)
+depth = 6.0
+material = SubResource("mat_orange")
+
+[node name="LoopA" type="CSGCombiner3D" parent="." unique_id=1172897903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -36)
+use_collision = true
+
+[node name="Block" type="CSGBox3D" parent="LoopA" unique_id=55494870]
+size = Vector3(8, 11, 11)
+material = SubResource("mat_orange")
+
+[node name="Hole" type="CSGCylinder3D" parent="LoopA" unique_id=1665164745]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0)
+operation = 2
+radius = 4.5
+height = 8.2
+sides = 24
+
+[node name="Entrance" type="CSGBox3D" parent="LoopA" unique_id=535146986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 4)
+operation = 2
+size = Vector3(8.2, 5, 6)
+
+[node name="LoopB" type="CSGCombiner3D" parent="." unique_id=536223145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 4.5, 0)
+use_collision = true
+
+[node name="Block" type="CSGBox3D" parent="LoopB" unique_id=30710220]
+size = Vector3(11, 11, 8)
+material = SubResource("mat_orange")
+
+[node name="Hole" type="CSGCylinder3D" parent="LoopB" unique_id=609279107]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+operation = 2
+radius = 4.5
+height = 8.2
+sides = 24
+
+[node name="Entrance" type="CSGBox3D" parent="LoopB" unique_id=699649757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -3.5, 0)
+operation = 2
+size = Vector3(6, 5, 8.2)
+
+[node name="CircleTrack" type="CSGPolygon3D" parent="." unique_id=2064143674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 16)
+use_collision = true
+polygon = PackedVector2Array(10, 0, 14, 0, 14, 0.9, 13.4, 0.9, 13.4, 0.35, 10.6, 0.35, 10.6, 0.9, 10, 0.9)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 24
+material = SubResource("mat_orange")
+
+[node name="Curve90" type="CSGPolygon3D" parent="." unique_id=1269632791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -18)
+use_collision = true
+polygon = PackedVector2Array(10, 0, 14, 0, 14, 0.4, 10, 0.4)
+mode = 1
+spin_degrees = 90.0
+spin_sides = 16
+material = SubResource("mat_orange")
+
+[node name="Curve180" type="CSGPolygon3D" parent="." unique_id=1309671109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -16)
+use_collision = true
+polygon = PackedVector2Array(8, 0, 12, 0, 12, 0.4, 8, 0.4)
+mode = 1
+spin_degrees = 180.0
+spin_sides = 20
+material = SubResource("mat_orange")
+
+[node name="Ring" type="CSGTorus3D" parent="." unique_id=1546281248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.85, 22)
+use_collision = true
+inner_radius = 3.0
+outer_radius = 4.7
+sides = 24
+ring_sides = 12
+material = SubResource("mat_orange")
